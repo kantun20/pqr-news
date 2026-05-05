@@ -1,19 +1,20 @@
 /*
 Theme Name: PQR News
-Theme URI: https://example.com/pqr-news
+Theme URI: https://pqr-news.local
 Author: PQR News
-Author URI: https://example.com
-Description: Tema clásico mínimo para WordPress.
+Author URI: https://pqr-news.local
+Description: Theme clásico en PHP para un sitio de noticias.
 Version: 1.0.0
 Requires at least: 6.0
-Tested up to: 6.5
+Tested up to: 6.6
 Requires PHP: 7.4
 License: GNU General Public License v2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: pqr-news
-Tags: blog, news, classic-theme
+Tags: blog, news, custom-menu, featured-images
 */
 
+/* Estilos base mínimos para comprobar que el theme carga correctamente. */
 body {
 	margin: 0;
 	font-family: Arial, sans-serif;
@@ -22,26 +23,31 @@ body {
 	background: #fff;
 }
 
+/* Enlaces del sitio. */
 a {
 	color: #005ea8;
 }
 
+/* Contenedor principal usado por header, contenido y footer. */
 .site {
 	max-width: 960px;
 	margin: 0 auto;
 	padding: 24px;
 }
 
+/* Separación básica de las áreas principales del theme. */
 .site-header,
 .site-footer {
 	padding: 24px 0;
 }
 
+/* Nombre del sitio en la cabecera. */
 .site-title {
 	margin: 0;
 	font-size: 32px;
 }
 
+/* Separación mínima entre entradas del listado. */
 .post {
 	margin-bottom: 32px;
 }

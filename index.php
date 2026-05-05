@@ -1,6 +1,9 @@
 <?php
 /**
- * Main template file.
+ * Plantilla principal del theme.
+ *
+ * WordPress usa este archivo como respaldo para mostrar listados,
+ * archivos y contenido cuando no existe una plantilla más específica.
  *
  * @package PQR_News
  */
@@ -11,6 +14,7 @@ get_header();
 <main id="primary" class="site-main">
 	<?php if ( have_posts() ) : ?>
 		<?php
+		// Recorre las entradas disponibles en la consulta actual.
 		while ( have_posts() ) :
 			the_post();
 			?>
@@ -22,11 +26,13 @@ get_header();
 				</header>
 
 				<div class="entry-content">
+					<?php // Muestra un resumen para listados de noticias. ?>
 					<?php the_excerpt(); ?>
 				</div>
 			</article>
 		<?php endwhile; ?>
 
+		<?php // Navegación básica entre páginas de entradas. ?>
 		<?php the_posts_navigation(); ?>
 	<?php else : ?>
 		<p><?php esc_html_e( 'No posts found.', 'pqr-news' ); ?></p>
