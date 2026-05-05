@@ -32,9 +32,15 @@ function pqr_news_setup() {
 add_action( 'after_setup_theme', 'pqr_news_setup' );
 
 /**
- * Carga la hoja de estilos principal del theme.
+ * Carga las hojas de estilo del theme.
  */
 function pqr_news_scripts() {
 	wp_enqueue_style( 'pqr-news-style', get_stylesheet_uri(), array(), wp_get_theme()->get( 'Version' ) );
+	wp_enqueue_style(
+		'pqr-news-main',
+		get_template_directory_uri() . '/assets/css/main.css',
+		array( 'pqr-news-style' ),
+		wp_get_theme()->get( 'Version' )
+	);
 }
 add_action( 'wp_enqueue_scripts', 'pqr_news_scripts' );
