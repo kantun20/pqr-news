@@ -1,6 +1,6 @@
 <?php
 /**
- * Theme header.
+ * Cabecera del theme PQR News.
  *
  * @package PQR_News
  */
@@ -17,11 +17,15 @@
 
 <div id="page" class="site">
 	<header id="masthead" class="site-header">
+		<?php // Nombre del sitio con enlace a la portada. ?>
 		<p class="site-title">
-			<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a>
+			<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
+				<?php echo esc_html( get_bloginfo( 'name' ) ); ?>
+			</a>
 		</p>
 
-		<nav id="site-navigation" class="main-navigation" aria-label="<?php esc_attr_e( 'Primary menu', 'pqr-news' ); ?>">
+		<?php // Menú principal registrado en functions.php. ?>
+		<nav id="site-navigation" class="main-navigation" aria-label="<?php esc_attr_e( 'Menú principal', 'pqr-news' ); ?>">
 			<?php
 			wp_nav_menu(
 				array(
