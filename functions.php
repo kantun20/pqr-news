@@ -10,7 +10,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Registra soportes básicos de un theme clásico.
+ * Configura los soportes básicos del theme clásico.
  */
 function pqr_news_setup() {
 	// Permite que WordPress gestione la etiqueta <title>.
@@ -21,6 +21,20 @@ function pqr_news_setup() {
 
 	// Habilita imágenes destacadas para entradas de noticias.
 	add_theme_support( 'post-thumbnails' );
+
+	// Usa marcado HTML5 en formularios, comentarios, galerías y assets.
+	add_theme_support(
+		'html5',
+		array(
+			'search-form',
+			'comment-form',
+			'comment-list',
+			'gallery',
+			'caption',
+			'style',
+			'script',
+		)
+	);
 
 	// Registra una ubicación de menú principal.
 	register_nav_menus(
