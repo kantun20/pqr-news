@@ -18,22 +18,39 @@
 <div id="page" class="site">
 	<header id="masthead" class="site-header">
 		<?php // Nombre del sitio con enlace a la portada. ?>
-		<p class="site-title">
-			<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
-				<?php echo esc_html( get_bloginfo( 'name' ) ); ?>
-			</a>
-		</p>
+		<div class="site-branding">
+			<p class="site-title">
+				<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
+					<?php echo esc_html( get_bloginfo( 'name' ) ); ?>
+				</a>
+			</p>
 
-		<?php // Menú principal registrado en functions.php. ?>
+			<?php // Descripción corta configurada en Ajustes > Generales. ?>
+			<?php if ( get_bloginfo( 'description' ) ) : ?>
+				<p class="site-description"><?php echo esc_html( get_bloginfo( 'description' ) ); ?></p>
+			<?php endif; ?>
+		</div>
+
+		<?php // Menú principal con fallback básico al inicio. ?>
 		<nav id="site-navigation" class="main-navigation" aria-label="<?php esc_attr_e( 'Menú principal', 'pqr-news' ); ?>">
-			<?php
-			wp_nav_menu(
-				array(
-					'theme_location' => 'primary',
-					'menu_id'        => 'primary-menu',
-					'fallback_cb'    => false,
-				)
-			);
-			?>
+			<?php if ( has_nav_menu( 'primary' ) ) : ?>
+				<?php
+				wp_nav_menu(
+					array(
+						'theme_location' => 'primary',
+						'menu_id'        => 'primary-menu',
+						'container'      => false,
+					)
+				);
+				?>
+			<?php else : ?>
+				<ul id="primary-menu" class="menu">
+					<li>
+						<a href="<?php echo esc_url( home_url( '/' ) ); ?>">
+							<?php echo esc_html__( 'Inicio', 'pqr-news' ); ?>
+						</a>
+					</li>
+				</ul>
+			<?php endif; ?>
 		</nav>
 	</header>
