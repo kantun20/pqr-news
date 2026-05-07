@@ -1,6 +1,6 @@
 <?php
 /**
- * Search results template.
+ * Plantilla para resultados de búsqueda.
  *
  * @package PQR_News
  */
@@ -8,35 +8,45 @@
 get_header();
 ?>
 
-<main id="primary" class="site-main">
-	<header class="page-header">
-		<h1 class="page-title">
+<div class="site-layout">
+	<main id="primary" class="site-main content-area">
+		<header class="page-header">
+			<h1 class="page-title">
+				<?php
+				/* translators: %s: search query. */
+				printf(
+					esc_html__( 'Resultados de búsqueda para: %s', 'pqr-news' ),
+					'<span>' . esc_html( get_search_query() ) . '</span>'
+				);
+				?>
+			</h1>
+		</header>
+
+		<?php if ( have_posts() ) : ?>
 			<?php
-			printf(
-				esc_html__( 'Search results for: %s', 'pqr-news' ),
-				'<span>' . esc_html( get_search_query() ) . '</span>'
+			// Muestra cada resultado usando la tarjeta compartida de noticias.
+			while ( have_posts() ) :
+				the_post();
+				get_template_part( 'template-parts/content' );
+			endwhile;
+			?>
+
+			<?php
+			// Paginación numerada para páginas de resultados.
+			the_posts_pagination(
+				array(
+					'prev_text' => esc_html__( 'Anterior', 'pqr-news' ),
+					'next_text' => esc_html__( 'Siguiente', 'pqr-news' ),
+				)
 			);
 			?>
-		</h1>
-	</header>
+		<?php else : ?>
+			<p><?php esc_html_e( 'No se encontraron resultados.', 'pqr-news' ); ?></p>
+		<?php endif; ?>
+	</main>
 
-	<?php if ( have_posts() ) : ?>
-		<?php
-		while ( have_posts() ) :
-			the_post();
-			?>
-			<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-				<h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
-				<?php the_excerpt(); ?>
-			</article>
-		<?php endwhile; ?>
-
-		<?php the_posts_navigation(); ?>
-	<?php else : ?>
-		<p><?php esc_html_e( 'No results found.', 'pqr-news' ); ?></p>
-	<?php endif; ?>
-</main>
+	<?php get_sidebar(); ?>
+</div>
 
 <?php
-get_sidebar();
 get_footer();

@@ -46,6 +46,24 @@ function pqr_news_setup() {
 add_action( 'after_setup_theme', 'pqr_news_setup' );
 
 /**
+ * Registra las áreas de widgets del theme.
+ */
+function pqr_news_widgets_init() {
+	register_sidebar(
+		array(
+			'name'          => __( 'Sidebar principal', 'pqr-news' ),
+			'id'            => 'sidebar-1',
+			'description'   => __( 'Widgets mostrados junto al contenido principal.', 'pqr-news' ),
+			'before_widget' => '<section id="%1$s" class="widget %2$s">',
+			'after_widget'  => '</section>',
+			'before_title'  => '<h2 class="widget-title">',
+			'after_title'   => '</h2>',
+		)
+	);
+}
+add_action( 'widgets_init', 'pqr_news_widgets_init' );
+
+/**
  * Carga las hojas de estilo del theme.
  */
 function pqr_news_scripts() {
